@@ -18,7 +18,9 @@ public class UserService {
 
     // Create
     public void createUser(Utilisateur user) {
-        userRepository.save(user);
+        if (user != null) {
+            userRepository.save(user);
+        }
     }
 
     // Read Unitaire

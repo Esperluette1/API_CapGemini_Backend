@@ -17,8 +17,10 @@ public class ReservationService {
     private ReservationRepository reservationRepository;
 
     // Create
-    public void createReservation(Reservation Reservation) {
-        reservationRepository.save(Reservation);
+    public void createReservation(Reservation reservation) {
+        if (reservation != null){
+            reservationRepository.save(reservation);
+        }  
     }
 
     // Read Unitaire
