@@ -2,11 +2,6 @@ package com.univtours.polytech.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @Setter
@@ -16,6 +11,9 @@ import lombok.Setter;
 @Entity 
 @Table(name = "utilisateur")
 public class Utilisateur {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nom;
     private String prenom;
