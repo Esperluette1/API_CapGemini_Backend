@@ -20,6 +20,7 @@ import jakarta.persistence.GenerationType;
 @Entity 
 @Table(name = "coordonnees")
 public class Coordonnees {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
