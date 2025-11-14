@@ -33,7 +33,7 @@ public class CoordonneesService {
     }
 
     // Read par Liste
-    public List<Coordonnees> readAllCoordonneess() {
+    public List<Coordonnees> readAllCoordonnees() {
         return coordonneesRepository.findAll();
     }
 
