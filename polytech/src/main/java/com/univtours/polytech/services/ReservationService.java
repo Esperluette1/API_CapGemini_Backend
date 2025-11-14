@@ -36,10 +36,6 @@ public class ReservationService {
     }
 
     // Update
-
-    private int utilisateur_id;
-    private int terrain_id;
-    private int reservation;
     public void updateReservation(int user_ID, int terrain_ID, int reservation_ID) {
         Optional<Reservation> Reservation = reservationRepository.findById(reservation_ID);
         if (Reservation.isEmpty()) {
