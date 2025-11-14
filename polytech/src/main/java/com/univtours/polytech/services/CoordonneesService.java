@@ -18,7 +18,9 @@ public class CoordonneesService {
 
     // Create
     public void createCoordonnees(Coordonnees coordonnees) {
-        coordonneesRepository.save(coordonnees);
+        if (coordonnees != null){
+            coordonneesRepository.save(coordonnees);
+        }
     }
 
     // Read Unitaire

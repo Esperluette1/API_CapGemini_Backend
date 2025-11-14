@@ -18,7 +18,9 @@ public class TerrainService {
 
     // Create
     public void createTerrain(Terrain terrain) {
-        terrainRepository.save(terrain);
+        if (terrain != null){
+            terrainRepository.save(terrain);
+        }
     }
 
     // Read Unitaire
