@@ -17,7 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Entity 
+@Entity
 @Table(name = "terrain")
 public class Terrain {
 
