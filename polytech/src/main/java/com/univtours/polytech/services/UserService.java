@@ -56,4 +56,19 @@ public class UserService {
         }
         userRepository.deleteById(ID);
     }
+
+    public Utilisateur loginUser(String username, String password) {
+        Optional<Utilisateur> useropt = userRepository.findByUsername(username);
+
+        if (useropt.isPresent()) {
+            Utilisateur user = useropt.get();
+            if (user.getPassword().equals(password)) {
+                return user;
+            }
+            else {
+                throw new EntityNotFoundException("L'utilisateur n'existe pas");
+            }
+        }
+        return null;
+    }
 }

@@ -45,26 +45,16 @@ public class CoordonneesController {
     @GetMapping
     public ResponseEntity<List<CoordonneesDTO>> getAllCoordonnees() {
         List<Coordonnees> entities = coordonneesService.readAllCoordonnees();
-        List<CoordonneesDTO> dtos =
-                entities.stream()
-                        .map(coordonneesMapper::toDTO)
-                        .toList();
+        List<CoordonneesDTO> dtos = entities.stream().map(coordonneesMapper::toDTO).toList();
 
         return ResponseEntity.ok(dtos);
     }
 
     // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateCoordonnees(
-            @PathVariable int id,
-            @RequestBody CoordonneesDTO dto
-    ) {
+    public ResponseEntity<Void> updateCoordonnees(@PathVariable int id, @RequestBody CoordonneesDTO dto) {
         Coordonnees entity = coordonneesMapper.toEntity(dto);
-        coordonneesService.updateCoordonnees(
-                id,
-                entity.getLongitude(),
-                entity.getLatitude()
-        );
+        coordonneesService.updateCoordonnees(id, entity.getLongitude(), entity.getLatitude());
         return ResponseEntity.noContent().build();
     }
 

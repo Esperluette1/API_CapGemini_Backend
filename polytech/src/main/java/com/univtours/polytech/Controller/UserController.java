@@ -79,4 +79,16 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<UtilisateurDTO> login(@RequestBody UtilisateurDTO loginRequest) {
+        Utilisateur user = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
+
+        if (user != null) {
+            return ResponseEntity.ok(utilisateurMapper.toDTO(user));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+    }
 }

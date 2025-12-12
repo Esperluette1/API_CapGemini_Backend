@@ -45,10 +45,7 @@ public class TerrainController {
     @GetMapping
     public ResponseEntity<List<TerrainDTO>> getAllTerrains() {
         List<Terrain> entities = terrainService.readAllTerrains();
-        List<TerrainDTO> dtos =
-                entities.stream()
-                        .map(terrainMapper::toDTO)
-                        .toList();
+        List<TerrainDTO> dtos = entities.stream().map(terrainMapper::toDTO).toList();
 
         return ResponseEntity.ok(dtos);
     }
