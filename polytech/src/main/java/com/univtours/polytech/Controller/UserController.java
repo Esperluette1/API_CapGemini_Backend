@@ -5,13 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.univtours.polytech.dto.UtilisateurDTO;
 import com.univtours.polytech.entity.Utilisateur;
 import com.univtours.polytech.mapper.UtilisateurMapper;
 import com.univtours.polytech.services.UserService;
-
 
 @RestController
 @RequestMapping("/users")
@@ -44,10 +50,9 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UtilisateurDTO>> getAllUsers() {
         List<Utilisateur> entities = userService.readAllUsers();
-        List<UtilisateurDTO> dtos =
-                entities.stream()
-                        .map(utilisateurMapper::toDTO)
-                        .toList();
+        List<UtilisateurDTO> dtos = entities.stream()
+                .map(utilisateurMapper::toDTO)
+                .toList();
 
         return ResponseEntity.ok(dtos);
     }
@@ -56,8 +61,7 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateUser(
             @PathVariable int id,
-            @RequestBody UtilisateurDTO dto
-    ) {
+            @RequestBody UtilisateurDTO dto) {
         Utilisateur entity = utilisateurMapper.toEntity(dto);
         userService.updateUser(
                 id,
@@ -65,8 +69,7 @@ public class UserController {
                 entity.getPrenom(),
                 entity.getMail(),
                 entity.getPassword(),
-                entity.getUsername()
-        );
+                entity.getUsername());
         return ResponseEntity.noContent().build();
     }
 
@@ -75,5 +78,17 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UtilisateurDTO> login(@RequestBody UtilisateurDTO loginRequest) {
+        Utilisateur user = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
+
+        if (user != null) {
+            return ResponseEntity.ok(utilisateurMapper.toDTO(user));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
     }
 }
