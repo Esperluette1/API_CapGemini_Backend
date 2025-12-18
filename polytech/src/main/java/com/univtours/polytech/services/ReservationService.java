@@ -14,7 +14,7 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ReservationService {
     @Autowired
-    private ReservationRepository reservationRepository;
+    private static ReservationRepository reservationRepository;
 
     // Create
     public void createReservation(Reservation reservation) {
@@ -33,7 +33,7 @@ public class ReservationService {
     }
 
     // Read par Liste
-    public List<Reservation> readAllReservations() {
+    public static List<Reservation> readAllReservations() {
         return reservationRepository.findAll();
     }
 

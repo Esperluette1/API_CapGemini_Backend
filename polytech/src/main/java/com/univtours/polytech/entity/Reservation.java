@@ -23,7 +23,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int reservation;
     private int utilisateur_id;
     private int terrain_id;
-    private int reservation;
 }
