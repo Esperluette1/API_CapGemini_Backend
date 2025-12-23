@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.univtours.polytech.entity.Coordonnees;
 
 @Repository
-public interface CoordonneesRepository extends JpaRepository<Coordonnees, Integer> {
+public interface CoordonneesRepository extends JpaRepository<Coordonnees, Long> {
 
 }

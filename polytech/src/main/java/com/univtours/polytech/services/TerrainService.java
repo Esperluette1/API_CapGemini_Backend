@@ -24,7 +24,7 @@ public class TerrainService {
     }
 
     // Read Unitaire
-    public Terrain readTerrain(int ID) {
+    public Terrain readTerrain(Long ID) {
         Optional<Terrain> terrain = terrainRepository.findById(ID);
         if (terrain.isEmpty()) {
             throw new EntityNotFoundException("Terrain non trouvé");
@@ -38,7 +38,7 @@ public class TerrainService {
     }
 
     // Update
-    public void updateTerrain(int ID, String nom, int quantite, String description, int coordonnees_id) {
+    public void updateTerrain(Long ID, String nom, Integer quantite, String description, Integer coordonnees_id) {
         Optional<Terrain> terrain = terrainRepository.findById(ID);
         if (terrain.isEmpty()) {
             throw new EntityNotFoundException("Terrain non trouvé");
@@ -46,11 +46,12 @@ public class TerrainService {
         terrain.get().setNom(nom);
         terrain.get().setQuantite(quantite);
         terrain.get().setDescription(description);
-        terrain.get().setCoordonnees_id(coordonnees_id);
+        terrain.get().setCoordonneesId(coordonnees_id);
+        terrainRepository.save(terrain.get());
     }
 
     // Delete
-    public void deleteTerrain(int ID) {
+    public void deleteTerrain(Long ID) {
         if (!terrainRepository.existsById(ID)) {
             throw new EntityNotFoundException("Le terrain n'existe pas");
         }

@@ -35,7 +35,7 @@ public class CoordonneesController {
 
     // READ unitaire
     @GetMapping("/{id}")
-    public ResponseEntity<CoordonneesDTO> getCoordonnees(@PathVariable int id) {
+    public ResponseEntity<CoordonneesDTO> getCoordonnees(@PathVariable Long id) {
         Coordonnees entity = coordonneesService.readCoordonnees(id);
         CoordonneesDTO dto = coordonneesMapper.toDTO(entity);
         return ResponseEntity.ok(dto);
@@ -52,7 +52,7 @@ public class CoordonneesController {
 
     // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateCoordonnees(@PathVariable int id, @RequestBody CoordonneesDTO dto) {
+    public ResponseEntity<Void> updateCoordonnees(@PathVariable Long id, @RequestBody CoordonneesDTO dto) {
         Coordonnees entity = coordonneesMapper.toEntity(dto);
         coordonneesService.updateCoordonnees(id, entity.getLongitude(), entity.getLatitude());
         return ResponseEntity.noContent().build();
@@ -60,7 +60,7 @@ public class CoordonneesController {
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCoordonnees(@PathVariable int id) {
+    public ResponseEntity<Void> deleteCoordonnees(@PathVariable Long id) {
         coordonneesService.deleteCoordonnees(id);
         return ResponseEntity.noContent().build();
     }

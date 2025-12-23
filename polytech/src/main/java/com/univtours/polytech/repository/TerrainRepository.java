@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.univtours.polytech.entity.Terrain;
 
 @Repository
-public interface TerrainRepository extends JpaRepository<Terrain, Integer> {
+public interface TerrainRepository extends JpaRepository<Terrain, Long> {
 
 }

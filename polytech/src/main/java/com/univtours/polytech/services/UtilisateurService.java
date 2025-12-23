@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.univtours.polytech.entity.Utilisateur;
-import com.univtours.polytech.repository.UserRepository;
+import com.univtours.polytech.repository.UtilisateurRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
-public class UserService {
+public class UtilisateurService {
     @Autowired
-    private UserRepository userRepository;
+    private UtilisateurRepository userRepository;
 
     // Create
     public void createUser(Utilisateur user) {
@@ -24,8 +24,8 @@ public class UserService {
     }
 
     // Read Unitaire
-    public Utilisateur readUser(int ID) {
-        Optional<Utilisateur> user = userRepository.findById(ID);
+    public Utilisateur readUser(Long id) {
+        Optional<Utilisateur> user = userRepository.findById(id);
         if (user.isEmpty()) {
             throw new EntityNotFoundException("Utilisateur non trouvé");
         }
@@ -38,7 +38,7 @@ public class UserService {
     }
 
     // Update
-    public void updateUser(int ID, String nom, String prenom, String mail, String password, String username) {
+    public void updateUser(Long ID, String nom, String prenom, String mail, String password, String username) {
         Optional<Utilisateur> user = userRepository.findById(ID);
         if (user.isEmpty()) {
             throw new EntityNotFoundException("Utilisateur non trouvé");
@@ -50,7 +50,7 @@ public class UserService {
     }
 
     // Delete
-    public void deleteUser(int ID) {
+    public void deleteUser(Long ID) {
         if (!userRepository.existsById(ID)) {
             throw new EntityNotFoundException("L'utilisateur n'existe pas");
         }

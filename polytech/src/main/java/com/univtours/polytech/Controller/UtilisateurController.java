@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.univtours.polytech.dto.UtilisateurDTO;
 import com.univtours.polytech.entity.Utilisateur;
 import com.univtours.polytech.mapper.UtilisateurMapper;
-import com.univtours.polytech.services.UserService;
+import com.univtours.polytech.services.UtilisateurService;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/utilisateurs")
+public class UtilisateurController {
 
     @Autowired
-    private UserService userService;
+    private UtilisateurService userService;
 
     @Autowired
     private UtilisateurMapper utilisateurMapper;
@@ -40,7 +40,7 @@ public class UserController {
 
     // READ unitaire
     @GetMapping("/{id}")
-    public ResponseEntity<UtilisateurDTO> getUser(@PathVariable int id) {
+    public ResponseEntity<UtilisateurDTO> getUser(@PathVariable Long id) {
         Utilisateur entity = userService.readUser(id);
         UtilisateurDTO dto = utilisateurMapper.toDTO(entity);
         return ResponseEntity.ok(dto);
@@ -60,7 +60,7 @@ public class UserController {
     // UPDATE
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateUser(
-            @PathVariable int id,
+            @PathVariable Long id,
             @RequestBody UtilisateurDTO dto) {
         Utilisateur entity = utilisateurMapper.toEntity(dto);
         userService.updateUser(
@@ -75,7 +75,7 @@ public class UserController {
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable int id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }

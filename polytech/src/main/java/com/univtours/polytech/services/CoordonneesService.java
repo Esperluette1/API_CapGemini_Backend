@@ -24,8 +24,8 @@ public class CoordonneesService {
     }
 
     // Read Unitaire
-    public Coordonnees readCoordonnees(int ID) {
-        Optional<Coordonnees> coordonnees = coordonneesRepository.findById(ID);
+    public Coordonnees readCoordonnees(Long id) {
+        Optional<Coordonnees> coordonnees = coordonneesRepository.findById(id);
         if (coordonnees.isEmpty()) {
             throw new EntityNotFoundException("Coordonnees non trouvé");
         }
@@ -38,17 +38,18 @@ public class CoordonneesService {
     }
 
     // Update
-    public void updateCoordonnees(int ID, float longitude, float latitude) {
+    public void updateCoordonnees(Long ID, float longitude, float latitude) {
         Optional<Coordonnees> coordonnees = coordonneesRepository.findById(ID);
         if (coordonnees.isEmpty()) {
             throw new EntityNotFoundException("Coordonnees non trouvé");
         }
         coordonnees.get().setLongitude(longitude);
         coordonnees.get().setLatitude(latitude);
+        coordonneesRepository.save(coordonnees.get());
     }
 
     // Delete
-    public void deleteCoordonnees(int ID) {
+    public void deleteCoordonnees(Long ID) {
         if (!coordonneesRepository.existsById(ID)) {
             throw new EntityNotFoundException("Le coordonnees n'existe pas");
         }

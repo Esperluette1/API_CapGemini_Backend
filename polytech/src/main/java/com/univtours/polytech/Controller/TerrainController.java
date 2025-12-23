@@ -35,7 +35,7 @@ public class TerrainController {
 
     // READ unitaire
     @GetMapping("/{id}")
-    public ResponseEntity<TerrainDTO> getTerrain(@PathVariable int id) {
+    public ResponseEntity<TerrainDTO> getTerrain(@PathVariable Long id) {
         Terrain entity = terrainService.readTerrain(id);
         TerrainDTO dto = terrainMapper.toDTO(entity);
         return ResponseEntity.ok(dto);
@@ -53,7 +53,7 @@ public class TerrainController {
     // UPDATE
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateTerrain(
-            @PathVariable int id,
+            @PathVariable Long id,
             @RequestBody TerrainDTO dto
     ) {
         Terrain entity = terrainMapper.toEntity(dto);
@@ -62,14 +62,14 @@ public class TerrainController {
                 entity.getNom(),
                 entity.getQuantite(),
                 entity.getDescription(),
-                entity.getCoordonnees_id()
+                entity.getCoordonneesId()
         );
         return ResponseEntity.noContent().build();
     }
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTerrain(@PathVariable int id) {
+    public ResponseEntity<Void> deleteTerrain(@PathVariable Long id) {
         terrainService.deleteTerrain(id);
         return ResponseEntity.noContent().build();
     }

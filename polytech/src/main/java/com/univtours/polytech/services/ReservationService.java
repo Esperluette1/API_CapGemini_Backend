@@ -14,7 +14,7 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ReservationService {
     @Autowired
-    private static ReservationRepository reservationRepository;
+    private ReservationRepository reservationRepository;
 
     // Create
     public void createReservation(Reservation reservation) {
@@ -24,7 +24,7 @@ public class ReservationService {
     }
 
     // Read Unitaire
-    public Reservation readReservation(int ID) {
+    public Reservation readReservation(Integer ID) {
         Optional<Reservation> reservation = reservationRepository.findById(ID);
         if (reservation.isEmpty()) {
             throw new EntityNotFoundException("Reservation non trouvé");
@@ -33,23 +33,24 @@ public class ReservationService {
     }
 
     // Read par Liste
-    public static List<Reservation> readAllReservations() {
+    public List<Reservation> readAllReservations() {
         return reservationRepository.findAll();
     }
 
     // Update
-    public void updateReservation(int user_ID, int terrain_ID, int reservation_ID) {
-        Optional<Reservation> Reservation = reservationRepository.findById(reservation_ID);
-        if (Reservation.isEmpty()) {
+    public void updateReservation(Integer reservation_ID, Integer user_ID, Integer terrain_ID, Integer reservation_value) {
+        Optional<Reservation> reservation = reservationRepository.findById(reservation_ID);
+        if (reservation.isEmpty()) {
             throw new EntityNotFoundException("Reservation non trouvé");
         }
-        Reservation.get().setReservation(reservation_ID);
-        Reservation.get().setUtilisateur_id(user_ID);
-        Reservation.get().setTerrain_id(terrain_ID);
+        reservation.get().setReservation(reservation_value);
+        reservation.get().setUtilisateur_id(user_ID);
+        reservation.get().setTerrain_id(terrain_ID);
+        reservationRepository.save(reservation.get());
     }
 
     // Delete
-    public void deleteReservation(int ID) {
+    public void deleteReservation(Integer ID) {
         if (!reservationRepository.existsById(ID)) {
             throw new EntityNotFoundException("La reservation n'existe pas");
         }

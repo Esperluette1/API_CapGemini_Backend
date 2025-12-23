@@ -33,7 +33,7 @@ public class ReservationController {
 
     // READ unitaire
     @GetMapping("/{id}")
-    public ResponseEntity<ReservationDTO> getReservation(@PathVariable int id) {
+    public ResponseEntity<ReservationDTO> getReservation(@PathVariable Integer id) {
         Reservation entity = reservationService.readReservation(id);
         ReservationDTO dto = reservationMapper.toDTO(entity);
         return ResponseEntity.ok(dto);
@@ -42,7 +42,7 @@ public class ReservationController {
     // READ liste
     @GetMapping
     public ResponseEntity<List<ReservationDTO>> getAllReservations() {
-        List<Reservation> entities = ReservationService.readAllReservations();
+        List<Reservation> entities = reservationService.readAllReservations();
         List<ReservationDTO> dtos =
                 entities.stream()
                         .map(reservationMapper::toDTO)
@@ -54,11 +54,12 @@ public class ReservationController {
     // UPDATE
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateReservation(
-            @PathVariable int id,
+            @PathVariable Integer id,
             @RequestBody ReservationDTO dto
     ) {
         Reservation entity = reservationMapper.toEntity(dto);
         reservationService.updateReservation(
+                id,
                 entity.getUtilisateur_id(),
                 entity.getTerrain_id(),
                 entity.getReservation()
@@ -68,7 +69,7 @@ public class ReservationController {
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteReservation(@PathVariable int id) {
+    public ResponseEntity<Void> deleteReservation(@PathVariable Integer id) {
         reservationService.deleteReservation(id);
         return ResponseEntity.noContent().build();
     }
