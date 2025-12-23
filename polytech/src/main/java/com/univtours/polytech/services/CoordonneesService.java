@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 
 import com.univtours.polytech.entity.Coordonnees;
 import com.univtours.polytech.repository.CoordonneesRepository;
+import com.univtours.polytech.repository.TerrainRepository;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CoordonneesService {
     @Autowired
     private CoordonneesRepository coordonneesRepository;
+    @Autowired
+    private TerrainRepository terrainRepository;
 
     // Create
     public void createCoordonnees(Coordonnees coordonnees) {
@@ -51,8 +56,23 @@ public class CoordonneesService {
     // Delete
     public void deleteCoordonnees(Long ID) {
         if (!coordonneesRepository.existsById(ID)) {
-            throw new EntityNotFoundException("Le coordonnees n'existe pas");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Coordonnées introuvables");
         }
-        coordonneesRepository.deleteById(ID);
+        // Ne pas supprimer si des terrains référencent ces coordonnées (respecter script BDD)
+        Integer idInt;
+        try {
+            idInt = ID.intValue();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID invalide");
+        }
+        boolean referenced = terrainRepository.existsByCoordonneesId(idInt);
+        if (referenced) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Impossible de supprimer : références existantes (terrain)");
+        }
+        try {
+            coordonneesRepository.deleteById(ID);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Échec suppression coordonnées", ex);
+        }
     }
 }

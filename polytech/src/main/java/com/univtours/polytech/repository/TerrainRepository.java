@@ -7,5 +7,6 @@ import com.univtours.polytech.entity.Terrain;
 
 @Repository
 public interface TerrainRepository extends JpaRepository<Terrain, Long> {
+	boolean existsByCoordonneesId(Integer coordonneesId);
 
 }
