@@ -5,12 +5,12 @@ public class TerrainDTO {
     private String nom;
     private Integer quantite;
     private String description;
-    private Integer coordonneesId;
+    private Long coordonneesId;
 
     public TerrainDTO() {
     }
 
-    public TerrainDTO(Long id, String nom, Integer quantite, String description, Integer coordonneesId) {
+    public TerrainDTO(Long id, String nom, Integer quantite, String description, Long coordonneesId) {
         this.id = id;
         this.nom = nom;
         this.quantite = quantite;
@@ -50,11 +50,11 @@ public class TerrainDTO {
         this.description = description;
     }
 
-    public Integer getCoordonneesId() {
+    public Long getCoordonneesId() {
         return coordonneesId;
     }
 
-    public void setCoordonneesId(Integer coordonneesId) {
+    public void setCoordonneesId(Long coordonneesId) {
         this.coordonneesId = coordonneesId;
     }
 }

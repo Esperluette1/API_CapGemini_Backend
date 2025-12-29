@@ -6,6 +6,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 @Table(name = "coordonnees")
@@ -21,6 +23,9 @@ public class Coordonnees {
 
     @Column(name = "latitude")
     private float latitude;
+
+    @OneToMany(mappedBy = "coordonnees")
+    private List<Terrain> terrains;
 
     public Coordonnees() {
     }
@@ -53,5 +58,13 @@ public class Coordonnees {
 
     public void setLatitude(float latitude) {
         this.latitude = latitude;
+    }
+
+    public List<Terrain> getTerrains() {
+        return terrains;
+    }
+
+    public void setTerrains(List<Terrain> terrains) {
+        this.terrains = terrains;
     }
 }

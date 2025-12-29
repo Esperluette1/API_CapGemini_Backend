@@ -47,6 +47,8 @@ public class UtilisateurService {
         user.get().setPrenom(prenom);
         user.get().setMail(mail);
         user.get().setPassword(password);
+        user.get().setUsername(username);
+        userRepository.save(user.get());
     }
 
     // Delete

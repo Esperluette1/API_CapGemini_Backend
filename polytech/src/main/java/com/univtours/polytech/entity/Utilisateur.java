@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
 @Entity 
 @Table(name = "utilisateur")
@@ -30,6 +32,9 @@ public class Utilisateur {
 
     @Column(name = "username")
     private String username;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Reservation> reservations;
 
     public Utilisateur() {
     }
@@ -89,5 +94,13 @@ public class Utilisateur {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

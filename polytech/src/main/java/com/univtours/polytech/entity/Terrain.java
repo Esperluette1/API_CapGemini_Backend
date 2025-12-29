@@ -6,6 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 @Table(name = "terrain")
@@ -22,21 +26,25 @@ public class Terrain {
     @Column(name = "quantite")
     private Integer quantite;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = true)
     private String description;
 
-    @Column(name = "coordonnees_id")
-    private Integer coordonneesId;
+    @ManyToOne
+    @JoinColumn(name = "coordonnees_id", nullable = false)
+    private Coordonnees coordonnees;
+
+    @OneToMany(mappedBy = "terrain")
+    private List<Reservation> reservations;
 
     public Terrain() {
     }
 
-    public Terrain(Long id, String nom, Integer quantite, String description, Integer coordonneesId) {
+    public Terrain(Long id, String nom, Integer quantite, String description, Coordonnees coordonnees) {
         this.id = id;
         this.nom = nom;
         this.quantite = quantite;
         this.description = description;
-        this.coordonneesId = coordonneesId;
+        this.coordonnees = coordonnees;
     }
 
     public Long getId() {
@@ -71,11 +79,19 @@ public class Terrain {
         this.description = description;
     }
 
-    public Integer getCoordonneesId() {
-        return coordonneesId;
+    public Coordonnees getCoordonnees() {
+        return coordonnees;
     }
 
-    public void setCoordonneesId(Integer coordonneesId) {
-        this.coordonneesId = coordonneesId;
+    public void setCoordonnees(Coordonnees coordonnees) {
+        this.coordonnees = coordonnees;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

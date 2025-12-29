@@ -1,6 +1,7 @@
 package com.univtours.polytech.Controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,7 +53,7 @@ public class UtilisateurController {
         List<Utilisateur> entities = userService.readAllUsers();
         List<UtilisateurDTO> dtos = entities.stream()
                 .map(utilisateurMapper::toDTO)
-                .toList();
+                .collect(Collectors.toList());
 
         return ResponseEntity.ok(dtos);
     }

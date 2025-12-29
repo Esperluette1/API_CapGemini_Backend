@@ -1,6 +1,7 @@
 package com.univtours.polytech.Controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,7 +46,7 @@ public class CoordonneesController {
     @GetMapping
     public ResponseEntity<List<CoordonneesDTO>> getAllCoordonnees() {
         List<Coordonnees> entities = coordonneesService.readAllCoordonnees();
-        List<CoordonneesDTO> dtos = entities.stream().map(coordonneesMapper::toDTO).toList();
+        List<CoordonneesDTO> dtos = entities.stream().map(coordonneesMapper::toDTO).collect(Collectors.toList());
 
         return ResponseEntity.ok(dtos);
     }

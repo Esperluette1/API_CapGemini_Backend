@@ -2,33 +2,44 @@ package com.univtours.polytech.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "reservation")
-public class Reservation {
+@IdClass(ReservationId.class)
+public class Reservation implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reservation")
-    private Integer reservation;
-
     @Column(name = "utilisateur_id")
     private Integer utilisateur_id;
 
+    @Id
     @Column(name = "terrain_id")
     private Integer terrain_id;
+
+    @Column(name = "reservation")
+    private Integer reservation;
+
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id", insertable = false, updatable = false)
+    private Utilisateur utilisateur;
+
+    @ManyToOne
+    @JoinColumn(name = "terrain_id", insertable = false, updatable = false)
+    private Terrain terrain;
 
     public Reservation() {
     }
 
-    public Reservation(Integer reservation, Integer utilisateur_id, Integer terrain_id) {
-        this.reservation = reservation;
+    public Reservation(Integer utilisateur_id, Integer terrain_id, Integer reservation) {
         this.utilisateur_id = utilisateur_id;
         this.terrain_id = terrain_id;
+        this.reservation = reservation;
     }
 
     public Integer getReservation() {
@@ -39,19 +50,19 @@ public class Reservation {
         this.reservation = reservation;
     }
 
-    public Integer getUtilisateur_id() {
-        return utilisateur_id;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setUtilisateur_id(Integer utilisateur_id) {
-        this.utilisateur_id = utilisateur_id;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
-    public Integer getTerrain_id() {
-        return terrain_id;
+    public Terrain getTerrain() {
+        return terrain;
     }
 
-    public void setTerrain_id(Integer terrain_id) {
-        this.terrain_id = terrain_id;
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
     }
 }
