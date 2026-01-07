@@ -1,40 +1,38 @@
 package com.univtours.polytech.dto;
 
 public class ReservationDTO {
-    private Integer utilisateur_id;
-    private Integer terrain_id;
-    private Integer reservation;
+    private Long utilisateurId;
+    private Long terrainId;
+    private Long reservation;
 
     public ReservationDTO() {
     }
 
-    public ReservationDTO(Integer utilisateur_id, Integer terrain_id, Integer reservation) {
-        this.utilisateur_id = utilisateur_id;
-        this.terrain_id = terrain_id;
+    public ReservationDTO(Long utilisateur_id, Long terrain_id, Long reservation) {
+        this.utilisateurId = utilisateur_id;
+        this.terrainId = terrain_id;
         this.reservation = reservation;
     }
 
-    public Integer getUtilisateur_id() {
-        return utilisateur_id;
+    public Long getUtilisateur_id() {
+        return utilisateurId;
     }
 
-    public void setUtilisateur_id(Integer utilisateur_id) {
-        this.utilisateur_id = utilisateur_id;
+    public void setUtilisateur_id(Long utilisateurId) {
+        this.utilisateurId = utilisateurId;
     }
 
-    public Integer getTerrain_id() {
-        return terrain_id;
+    public Long getTerrain_id() {
+        return terrainId;
     }
 
-    public void setTerrain_id(Integer terrain_id) {
-        this.terrain_id = terrain_id;
+    public void setTerrain_id(Long terrain_id) {
+        this.terrainId = terrainId;
     }
 
-    public Integer getReservation() {
+    public Long getReservation() {
         return reservation;
     }
 
-    public void setReservation(Integer reservation) {
-        this.reservation = reservation;
+    public void setReservation(Long reservation) {this.reservation = reservation;}
     }
-}

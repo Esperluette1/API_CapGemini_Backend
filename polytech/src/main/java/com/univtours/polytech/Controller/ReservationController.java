@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/reservations")
+@CrossOrigin(origins = "*")
 public class ReservationController {
 
     @Autowired
@@ -33,7 +34,7 @@ public class ReservationController {
 
     // READ unitaire
     @GetMapping("/{id}")
-    public ResponseEntity<ReservationDTO> getReservation(@PathVariable Integer id) {
+    public ResponseEntity<ReservationDTO> getReservation(@PathVariable Long id) {
         Reservation entity = reservationService.readReservation(id);
         ReservationDTO dto = reservationMapper.toDTO(entity);
         return ResponseEntity.ok(dto);
@@ -54,7 +55,7 @@ public class ReservationController {
     // UPDATE
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateReservation(
-            @PathVariable Integer id,
+            @PathVariable Long id,
             @RequestBody ReservationDTO dto
     ) {
         Reservation entity = reservationMapper.toEntity(dto);
@@ -69,7 +70,7 @@ public class ReservationController {
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteReservation(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteReservation(@PathVariable Long id) {
         reservationService.deleteReservation(id);
         return ResponseEntity.noContent().build();
     }

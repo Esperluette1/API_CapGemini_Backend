@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/terrains")
+@CrossOrigin(origins = "*")
 public class TerrainController {
 
     @Autowired
