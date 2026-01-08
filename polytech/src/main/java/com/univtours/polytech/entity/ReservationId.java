@@ -7,30 +7,30 @@ public class ReservationId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer utilisateur_id;
-    private Integer terrain_id;
+    private Long utilisateur_id;
+    private Long terrain_id;
 
     public ReservationId() {
     }
 
-    public ReservationId(Integer utilisateur_id, Integer terrain_id) {
+    public ReservationId(Long utilisateur_id, Long terrain_id) {
         this.utilisateur_id = utilisateur_id;
         this.terrain_id = terrain_id;
     }
 
-    public Integer getUtilisateur_id() {
+    public Long getUtilisateur_id() {
         return utilisateur_id;
     }
 
-    public void setUtilisateur_id(Integer utilisateur_id) {
+    public void setUtilisateur_id(Long utilisateur_id) {
         this.utilisateur_id = utilisateur_id;
     }
 
-    public Integer getTerrain_id() {
+    public Long getTerrain_id() {
         return terrain_id;
     }
 
-    public void setTerrain_id(Integer terrain_id) {
+    public void setTerrain_id(Long terrain_id) {
         this.terrain_id = terrain_id;
     }
 
