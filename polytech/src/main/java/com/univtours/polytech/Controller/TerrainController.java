@@ -21,6 +21,7 @@ import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/terrains")
+@CrossOrigin(origins = "*")
 public class TerrainController {
 
     @Autowired

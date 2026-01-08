@@ -2,6 +2,8 @@ package com.univtours.polytech.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
@@ -15,15 +17,15 @@ import java.io.Serializable;
 public class Reservation implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "utilisateur_id")
-    private Integer utilisateur_id;
-
-    @Id
-    @Column(name = "terrain_id")
-    private Integer terrain_id;
+    private Long utilisateur_id;
 
     @Column(name = "reservation")
-    private Integer reservation;
+    private Long reservation;
+
+    @Column(name = "terrain_id")
+    private Long terrain_id;
 
     @ManyToOne
     @JoinColumn(name = "utilisateur_id", insertable = false, updatable = false)
@@ -36,17 +38,17 @@ public class Reservation implements Serializable {
     public Reservation() {
     }
 
-    public Reservation(Integer utilisateur_id, Integer terrain_id, Integer reservation) {
+    public Reservation(Long reservation, Long utilisateur_id, Long terrain_id) {
+        this.reservation = reservation;
         this.utilisateur_id = utilisateur_id;
         this.terrain_id = terrain_id;
-        this.reservation = reservation;
     }
 
-    public Integer getReservation() {
+    public Long getReservation() {
         return reservation;
     }
 
-    public void setReservation(Integer reservation) {
+    public void setReservation(Long reservation) {
         this.reservation = reservation;
     }
 

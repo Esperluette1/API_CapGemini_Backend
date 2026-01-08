@@ -21,6 +21,7 @@ import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/reservations")
+@CrossOrigin(origins = "*")
 public class ReservationController {
 
     @Autowired
@@ -55,11 +56,9 @@ public class ReservationController {
     }
 
     // READ unitaire
-    @GetMapping("/{utilisateur_id}/{terrain_id}")
-    public ResponseEntity<ReservationDTO> getReservation(
-            @PathVariable Integer utilisateur_id,
-            @PathVariable Integer terrain_id) {
-        Reservation entity = reservationService.readReservation(utilisateur_id, terrain_id);
+    @GetMapping("/{id}")
+    public ResponseEntity<ReservationDTO> getReservation(@PathVariable Long id) {
+        Reservation entity = reservationService.readReservation(id);
         ReservationDTO dto = reservationMapper.toDTO(entity);
         return ResponseEntity.ok(dto);
     }
@@ -77,30 +76,28 @@ public class ReservationController {
     }
 
     // UPDATE
-    @PutMapping("/{utilisateur_id}/{terrain_id}")
+    @PutMapping("/{id}/{utilisateur_id}/{terrain_id}")
     public ResponseEntity<Void> updateReservation(
-            @PathVariable Integer utilisateur_id,
-            @PathVariable Integer terrain_id,
+            @PathVariable Long id,
+            @PathVariable Long utilisateur_id,
+            @PathVariable Long terrain_id,
             @RequestBody ReservationDTO dto
     ) {
-        Utilisateur utilisateur = utilisateurService.readUser(Long.valueOf(utilisateur_id));
-        Terrain terrain = terrainService.readTerrain(Long.valueOf(terrain_id));
+        Utilisateur utilisateur = utilisateurService.readUser(utilisateur_id);
+        Terrain terrain = terrainService.readTerrain(terrain_id);
         reservationService.updateReservation(
+                id,
                 utilisateur_id,
                 terrain_id,
-                utilisateur,
-                terrain,
                 dto.getReservation()
         );
         return ResponseEntity.noContent().build();
     }
 
     // DELETE
-    @DeleteMapping("/{utilisateur_id}/{terrain_id}")
-    public ResponseEntity<Void> deleteReservation(
-            @PathVariable Integer utilisateur_id,
-            @PathVariable Integer terrain_id) {
-        reservationService.deleteReservation(utilisateur_id, terrain_id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReservation(@PathVariable Long id) {
+        reservationService.deleteReservation(id);
         return ResponseEntity.noContent().build();
     }
 }

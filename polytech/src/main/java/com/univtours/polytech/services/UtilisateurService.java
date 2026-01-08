@@ -67,9 +67,7 @@ public class UtilisateurService {
             if (user.getPassword().equals(password)) {
                 return user;
             }
-            else {
-                throw new EntityNotFoundException("L'utilisateur n'existe pas");
-            }
+            return null;
         }
         return null;
     }

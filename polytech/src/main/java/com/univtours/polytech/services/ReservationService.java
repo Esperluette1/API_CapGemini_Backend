@@ -5,12 +5,15 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import com.univtours.polytech.entity.Reservation;
-import com.univtours.polytech.entity.ReservationId;
 import com.univtours.polytech.entity.Utilisateur;
 import com.univtours.polytech.entity.Terrain;
 import com.univtours.polytech.repository.ReservationRepository;
+import com.univtours.polytech.repository.TerrainRepository;
+import com.univtours.polytech.repository.UtilisateurRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -18,20 +21,30 @@ import jakarta.persistence.EntityNotFoundException;
 public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
+    @Autowired
+    private TerrainRepository terrainRepository;
+    @Autowired
+    private UtilisateurRepository utilisateurRepository;
 
     // Create
     public void createReservation(Reservation reservation) {
-        if (reservation != null && reservation.getUtilisateur() != null && reservation.getTerrain() != null){
+        if (reservation != null){
+            Long terrainId = reservation.getTerrain().getId();
+            Terrain terrain = terrainRepository.findById(terrainId)
+                    .orElseThrow(() -> new EntityNotFoundException("Terrain introuvable"));
+
+            long nbRes = reservationRepository.countByTerrainId(reservation.getTerrain().getId());
+            if(nbRes >= terrain.getQuantite()) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "Terrain complet");
+            }
+
             reservationRepository.save(reservation);
-        } else {
-            throw new EntityNotFoundException("Reservation, utilisateur and terrain cannot be null");
-        }  
+        }
     }
 
     // Read Unitaire
-    public Reservation readReservation(Integer utilisateur_id, Integer terrain_id) {
-        ReservationId id = new ReservationId(utilisateur_id, terrain_id);
-        Optional<Reservation> reservation = reservationRepository.findById(id);
+    public Reservation readReservation(Long ID) {
+        Optional<Reservation> reservation = reservationRepository.findById(ID);
         if (reservation.isEmpty()) {
             throw new EntityNotFoundException("Reservation non trouvé");
         }
@@ -44,12 +57,18 @@ public class ReservationService {
     }
 
     // Update
-    public void updateReservation(Integer utilisateur_id, Integer terrain_id, Utilisateur utilisateur, Terrain terrain, Integer reservation_value) {
-        ReservationId id = new ReservationId(utilisateur_id, terrain_id);
-        Optional<Reservation> reservation = reservationRepository.findById(id);
+    public void updateReservation(Long reservation_ID, Long user_ID, Long terrain_ID, Long reservation_value) {
+        Optional<Reservation> reservation = reservationRepository.findById(reservation_ID);
         if (reservation.isEmpty()) {
             throw new EntityNotFoundException("Reservation non trouvé");
         }
+        
+        Terrain terrain = terrainRepository.findById(terrain_ID)
+                .orElseThrow(() -> new EntityNotFoundException("Terrain introuvable"));
+        
+        Utilisateur utilisateur = utilisateurRepository.findById(user_ID)
+                .orElseThrow(() -> new EntityNotFoundException("Utilisateur introuvable"));
+        
         reservation.get().setReservation(reservation_value);
         reservation.get().setUtilisateur(utilisateur);
         reservation.get().setTerrain(terrain);
@@ -57,11 +76,10 @@ public class ReservationService {
     }
 
     // Delete
-    public void deleteReservation(Integer utilisateur_id, Integer terrain_id) {
-        ReservationId id = new ReservationId(utilisateur_id, terrain_id);
-        if (!reservationRepository.existsById(id)) {
+    public void deleteReservation(Long ID) {
+        if (!reservationRepository.existsById(ID)) {
             throw new EntityNotFoundException("La reservation n'existe pas");
         }
-        reservationRepository.deleteById(id);
+        reservationRepository.deleteById(ID);
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/coordonnees")
+@CrossOrigin(origins = "*")
 public class CoordonneesController {
 
     @Autowired
