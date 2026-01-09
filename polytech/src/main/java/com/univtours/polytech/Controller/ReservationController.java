@@ -87,8 +87,6 @@ public class ReservationController {
             @PathVariable Long terrain_id,
             @RequestBody ReservationDTO dto
     ) {
-        Utilisateur utilisateur = utilisateurService.readUser(utilisateur_id);
-        Terrain terrain = terrainService.readTerrain(terrain_id);
         reservationService.updateReservation(
                 id,
                 utilisateur_id,
