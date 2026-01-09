@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import jakarta.persistence.EntityNotFoundException;
 
 import com.univtours.polytech.dto.TerrainDTO;
 import com.univtours.polytech.entity.Terrain;
@@ -14,10 +16,6 @@ import com.univtours.polytech.entity.Coordonnees;
 import com.univtours.polytech.mapper.TerrainMapper;
 import com.univtours.polytech.services.TerrainService;
 import com.univtours.polytech.repository.CoordonneesRepository;
-import org.springframework.web.bind.annotation.*;
-
-import jakarta.persistence.EntityNotFoundException;
-
 
 @RestController
 @RequestMapping("/terrains")

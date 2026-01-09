@@ -6,24 +6,24 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
+
 import com.univtours.polytech.entity.Utilisateur;
 import com.univtours.polytech.repository.UtilisateurRepository;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UtilisateurService {
     @Autowired
     private UtilisateurRepository userRepository;
 
-    // Create
+    // CREATE
     public void createUser(Utilisateur user) {
         if (user != null) {
             userRepository.save(user);
         }
     }
 
-    // Read Unitaire
+    // READ unitaire
     @SuppressWarnings("null")
     public Utilisateur readUser(Long id) {
         Optional<Utilisateur> user = userRepository.findById(id);
@@ -33,12 +33,10 @@ public class UtilisateurService {
         return user.get();
     }
 
-    // Read par Liste
-    public List<Utilisateur> readAllUsers() {
-        return userRepository.findAll();
-    }
+    // READ liste
+    public List<Utilisateur> readAllUsers() {return userRepository.findAll();}
 
-    // Update
+    // UPDATE
     @SuppressWarnings("null")
     public void updateUser(Long ID, String nom, String prenom, String mail, String password, String username) {
         Optional<Utilisateur> user = userRepository.findById(ID);
@@ -53,7 +51,7 @@ public class UtilisateurService {
         userRepository.save(user.get());
     }
 
-    // Delete
+    // DELETE
     @SuppressWarnings("null")
     public void deleteUser(Long ID) {
         if (!userRepository.existsById(ID)) {

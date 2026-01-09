@@ -6,14 +6,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.*;
 
 import com.univtours.polytech.dto.CoordonneesDTO;
 import com.univtours.polytech.entity.Coordonnees;
 import com.univtours.polytech.mapper.CoordonneesMapper;
 import com.univtours.polytech.services.CoordonneesService;
-import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequestMapping("/coordonnees")

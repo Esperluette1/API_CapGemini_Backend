@@ -7,8 +7,7 @@ public class TerrainDTO {
     private String description;
     private Long coordonneesId;
 
-    public TerrainDTO() {
-    }
+    public TerrainDTO() {}
 
     public TerrainDTO(Long id, String nom, Integer quantite, String description, Long coordonneesId) {
         this.id = id;
@@ -18,43 +17,23 @@ public class TerrainDTO {
         this.coordonneesId = coordonneesId;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() {return id;}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) {this.id = id;}
 
-    public String getNom() {
-        return nom;
-    }
+    public String getNom() {return nom;}
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    public void setNom(String nom) {this.nom = nom;}
 
-    public Integer getQuantite() {
-        return quantite;
-    }
+    public Integer getQuantite() {return quantite;}
 
-    public void setQuantite(Integer quantite) {
-        this.quantite = quantite;
-    }
+    public void setQuantite(Integer quantite) {this.quantite = quantite;}
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() {return description;}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) {this.description = description;}
 
-    public Long getCoordonneesId() {
-        return coordonneesId;
-    }
+    public Long getCoordonneesId() {return coordonneesId;}
 
-    public void setCoordonneesId(Long coordonneesId) {
-        this.coordonneesId = coordonneesId;
-    }
+    public void setCoordonneesId(Long coordonneesId) {this.coordonneesId = coordonneesId;}
 }

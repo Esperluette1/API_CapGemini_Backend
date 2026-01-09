@@ -2,6 +2,7 @@ package com.univtours.polytech.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+
 import com.univtours.polytech.dto.CoordonneesDTO;
 import com.univtours.polytech.entity.Coordonnees;
 

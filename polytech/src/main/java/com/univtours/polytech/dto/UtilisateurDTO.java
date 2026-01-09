@@ -8,8 +8,7 @@ public class UtilisateurDTO {
     private String password;
     private String username;
 
-    public UtilisateurDTO() {
-    }
+    public UtilisateurDTO() {}
 
     public UtilisateurDTO(Long id, String nom, String prenom, String mail, String password, String username) {
         this.id = id;
@@ -17,54 +16,29 @@ public class UtilisateurDTO {
         this.prenom = prenom;
         this.mail = mail;
         this.password = password;
-        this.username = username;
-    }
+        this.username = username;}
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() {return id;}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) {this.id = id;}
 
-    public String getNom() {
-        return nom;
-    }
+    public String getNom() {return nom;}
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    public void setNom(String nom) {this.nom = nom;}
 
-    public String getPrenom() {
-        return prenom;
-    }
+    public String getPrenom() {return prenom;}
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+    public void setPrenom(String prenom) {this.prenom = prenom;}
 
-    public String getMail() {
-        return mail;
-    }
+    public String getMail() {return mail;}
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
+    public void setMail(String mail) {this.mail = mail;}
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() {return password;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) {this.password = password;}
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() {return username;}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) {this.username = username;}
 }

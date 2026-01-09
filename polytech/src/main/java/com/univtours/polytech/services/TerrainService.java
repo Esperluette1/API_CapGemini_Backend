@@ -6,12 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
+
 import com.univtours.polytech.entity.Terrain;
 import com.univtours.polytech.entity.Coordonnees;
 import com.univtours.polytech.repository.TerrainRepository;
 import com.univtours.polytech.repository.CoordonneesRepository;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class TerrainService {
@@ -21,7 +21,7 @@ public class TerrainService {
     @Autowired
     private CoordonneesRepository coordonneesRepository;
 
-    // Create
+    // CREATE
     public void createTerrain(Terrain terrain) {
         if (terrain != null && terrain.getCoordonnees() != null){
             terrainRepository.save(terrain);
@@ -30,7 +30,7 @@ public class TerrainService {
         }
     }
 
-    // Read Unitaire
+    // READ unitaire
     @SuppressWarnings("null")
     public Terrain readTerrain(Long ID) {
         Optional<Terrain> terrain = terrainRepository.findById(ID);
@@ -40,12 +40,10 @@ public class TerrainService {
         return terrain.get();
     }
 
-    // Read par Liste
-    public List<Terrain> readAllTerrains() {
-        return terrainRepository.findAll();
-    }
+    // READ liste
+    public List<Terrain> readAllTerrains() {return terrainRepository.findAll();}
 
-    // Update
+    // UPDATE
     @SuppressWarnings("null")
     public void updateTerrain(Long ID, String nom, Integer quantite, String description, Coordonnees coordonnees) {
         Optional<Terrain> terrain = terrainRepository.findById(ID);
@@ -59,7 +57,7 @@ public class TerrainService {
         terrainRepository.save(terrain.get());
     }
 
-    // Delete
+    // DELETE
     @SuppressWarnings("null")
     public void deleteTerrain(Long ID) {
         if (!terrainRepository.existsById(ID)) {
