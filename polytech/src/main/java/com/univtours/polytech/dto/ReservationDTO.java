@@ -14,25 +14,15 @@ public class ReservationDTO {
         this.reservation = reservation;
     }
 
-    public Long getUtilisateur_id() {
-        return utilisateurId;
-    }
+    public Long getUtilisateurId() {return utilisateurId;}
 
-    public void setUtilisateur_id(Long utilisateurId) {
-        this.utilisateurId = utilisateurId;
-    }
+    public void setUtilisateurId(Long utilisateurId) {this.utilisateurId = utilisateurId;}
 
-    public Long getTerrain_id() {
-        return terrainId;
-    }
+    public Long getTerrainId() {return terrainId;}
 
-    public void setTerrain_id(Long terrain_id) {
-        this.terrainId = terrainId;
-    }
+    public void setTerrainId(Long terrainId) {this.terrainId = terrainId;}
 
-    public Long getReservation() {
-        return reservation;
-    }
+    public Long getReservation() {return reservation;}
 
     public void setReservation(Long reservation) {this.reservation = reservation;}
     }

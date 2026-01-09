@@ -17,13 +17,13 @@ import java.io.Serializable;
 public class Reservation implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "utilisateur_id")
     private Long utilisateur_id;
 
     @Column(name = "reservation")
     private Long reservation;
 
+    @Id
     @Column(name = "terrain_id")
     private Long terrain_id;
 
@@ -66,5 +66,21 @@ public class Reservation implements Serializable {
 
     public void setTerrain(Terrain terrain) {
         this.terrain = terrain;
+    }
+
+    public Long getUtilisateur_id() {
+        return utilisateur_id;
+    }
+
+    public void setUtilisateur_id(Long utilisateur_id) {
+        this.utilisateur_id = utilisateur_id;
+    }
+
+    public Long getTerrain_id() {
+        return terrain_id;
+    }
+
+    public void setTerrain_id(Long terrain_id) {
+        this.terrain_id = terrain_id;
     }
 }
