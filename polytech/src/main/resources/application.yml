@@ -2,9 +2,9 @@ spring:
   application:
     name: opendata-crud
   datasource:
-    url: jdbc:mariadb://localhost:3306/petanque
+    url: jdbc:mariadb://localhost:3307/petanque
     username: root
-    password: password
+    password: Andreas_20
     driver-class-name: org.mariadb.jdbc.Driver
 
 server:
