@@ -24,6 +24,7 @@ public class UtilisateurService {
     }
 
     // Read Unitaire
+    @SuppressWarnings("null")
     public Utilisateur readUser(Long id) {
         Optional<Utilisateur> user = userRepository.findById(id);
         if (user.isEmpty()) {
@@ -38,6 +39,7 @@ public class UtilisateurService {
     }
 
     // Update
+    @SuppressWarnings("null")
     public void updateUser(Long ID, String nom, String prenom, String mail, String password, String username) {
         Optional<Utilisateur> user = userRepository.findById(ID);
         if (user.isEmpty()) {
@@ -52,6 +54,7 @@ public class UtilisateurService {
     }
 
     // Delete
+    @SuppressWarnings("null")
     public void deleteUser(Long ID) {
         if (!userRepository.existsById(ID)) {
             throw new EntityNotFoundException("L'utilisateur n'existe pas");

@@ -27,6 +27,7 @@ public class ReservationService {
     private UtilisateurRepository utilisateurRepository;
 
     // Create
+    @SuppressWarnings("null")
     public void createReservation(Reservation reservation) {
         if (reservation != null){
             Long terrainId = reservation.getTerrain().getId();
@@ -43,6 +44,7 @@ public class ReservationService {
     }
 
     // Read Unitaire
+    @SuppressWarnings("null")
     public Reservation readReservation(Long ID) {
         Optional<Reservation> reservation = reservationRepository.findById(ID);
         if (reservation.isEmpty()) {
@@ -57,6 +59,7 @@ public class ReservationService {
     }
 
     // Update
+    @SuppressWarnings("null")
     public void updateReservation(Long reservation_ID, Long user_ID, Long terrain_ID, Long reservation_value) {
         Optional<Reservation> reservation = reservationRepository.findById(reservation_ID);
         if (reservation.isEmpty()) {
@@ -76,6 +79,7 @@ public class ReservationService {
     }
 
     // Delete
+    @SuppressWarnings("null")
     public void deleteReservation(Long ID) {
         if (!reservationRepository.existsById(ID)) {
             throw new EntityNotFoundException("La reservation n'existe pas");

@@ -26,6 +26,7 @@ public class CoordonneesService {
     }
 
     // Read Unitaire
+    @SuppressWarnings("null")
     public Coordonnees readCoordonnees(Long id) {
         Optional<Coordonnees> coordonnees = coordonneesRepository.findById(id);
         if (coordonnees.isEmpty()) {
@@ -40,6 +41,7 @@ public class CoordonneesService {
     }
 
     // Update
+    @SuppressWarnings("null")
     public void updateCoordonnees(Long ID, float longitude, float latitude) {
         Optional<Coordonnees> coordonnees = coordonneesRepository.findById(ID);
         if (coordonnees.isEmpty()) {
@@ -51,6 +53,7 @@ public class CoordonneesService {
     }
 
     // Delete
+    @SuppressWarnings("null")
     public void deleteCoordonnees(Long ID) {
         if (!coordonneesRepository.existsById(ID)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Coordonnées introuvables");

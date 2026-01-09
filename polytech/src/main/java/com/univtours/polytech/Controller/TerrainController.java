@@ -40,6 +40,7 @@ public class TerrainController {
         
         // Charger les coordonnées à partir de l'ID fourni dans le DTO
         if (dto.getCoordonneesId() != null) {
+            @SuppressWarnings("null")
             Coordonnees coordonnees = coordonneesRepository.findById(dto.getCoordonneesId())
                 .orElseThrow(() -> new EntityNotFoundException("Coordonnees with id " + dto.getCoordonneesId() + " not found"));
             entity.setCoordonnees(coordonnees);
@@ -80,8 +81,10 @@ public class TerrainController {
         // Charger les coordonnées si fourni
         Coordonnees coordonnees = null;
         if (dto.getCoordonneesId() != null) {
-            coordonnees = coordonneesRepository.findById(dto.getCoordonneesId())
+            @SuppressWarnings("null")
+            Coordonnees temp = coordonneesRepository.findById(dto.getCoordonneesId())
                 .orElseThrow(() -> new EntityNotFoundException("Coordonnees with id " + dto.getCoordonneesId() + " not found"));
+            coordonnees = temp;
         }
         
         terrainService.updateTerrain(
