@@ -1,3 +1,7 @@
+## Avant de lancer le back
+Vérifier que les ports pour accéder à la base de données sont les bons ou innocuppés dans ce fichier : 
+API_CapGemini_Backend-main\polytech\src\main\java\com\univtours\polytech\resources\application.yml
+
 ## Lancer le back
 *(Se positionner au niveau de `polytech` dans l’arborescence)*
 
