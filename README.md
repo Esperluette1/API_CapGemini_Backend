@@ -10,6 +10,6 @@
 ---
 ## 1 — Démarrage du back-end
 ```powershell
-> mvn clean install`  // ajouter -DskipTests si les tests ne passent pas
+> mvn clean install  // ajouter -DskipTests si les tests ne passent pas
 > mvn spring-boot:run
 ```
