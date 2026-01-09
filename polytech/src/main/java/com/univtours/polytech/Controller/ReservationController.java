@@ -39,14 +39,18 @@ public class ReservationController {
     // CREATE
     @PostMapping
     public ResponseEntity<ReservationDTO> createReservation(@RequestBody ReservationDTO dto) {
-        if (dto.getUtilisateur_id() == null || dto.getTerrain_id() == null) {
+        if (dto.getUtilisateurId() == null || dto.getTerrainId() == null) {
             throw new EntityNotFoundException("utilisateur_id and terrain_id are required");
         }
         
-        Utilisateur utilisateur = utilisateurService.readUser(Long.valueOf(dto.getUtilisateur_id()));
-        Terrain terrain = terrainService.readTerrain(Long.valueOf(dto.getTerrain_id()));
+        Utilisateur utilisateur = utilisateurService.readUser(dto.getUtilisateurId());
+        Terrain terrain = terrainService.readTerrain(dto.getTerrainId());
         
         Reservation entity = reservationMapper.toEntity(dto);
+
+        entity.setUtilisateur_id(utilisateur.getId());
+        entity.setTerrain_id(terrain.getId());
+
         entity.setUtilisateur(utilisateur);
         entity.setTerrain(terrain);
         
