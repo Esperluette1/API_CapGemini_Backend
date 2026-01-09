@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
+import jakarta.persistence.EntityNotFoundException;
+
 import com.univtours.polytech.entity.Reservation;
 import com.univtours.polytech.entity.Utilisateur;
 import com.univtours.polytech.entity.Terrain;
 import com.univtours.polytech.repository.ReservationRepository;
 import com.univtours.polytech.repository.TerrainRepository;
 import com.univtours.polytech.repository.UtilisateurRepository;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ReservationService {
@@ -26,7 +26,7 @@ public class ReservationService {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
-    // Create
+    // CREATE
     @SuppressWarnings("null")
     public void createReservation(Reservation reservation) {
         if (reservation != null){
@@ -43,7 +43,7 @@ public class ReservationService {
         }
     }
 
-    // Read Unitaire
+    // READ unitaire
     @SuppressWarnings("null")
     public Reservation readReservation(Long ID) {
         Optional<Reservation> reservation = reservationRepository.findById(ID);
@@ -53,12 +53,10 @@ public class ReservationService {
         return reservation.get();
     }
 
-    // Read par Liste
-    public List<Reservation> readAllReservations() {
-        return reservationRepository.findAll();
-    }
+    // READ liste
+    public List<Reservation> readAllReservations() {return reservationRepository.findAll();}
 
-    // Update
+    // UPDATE
     @SuppressWarnings("null")
     public void updateReservation(Long reservation_ID, Long user_ID, Long terrain_ID, Long reservation_value) {
         Optional<Reservation> reservation = reservationRepository.findById(reservation_ID);
@@ -78,7 +76,7 @@ public class ReservationService {
         reservationRepository.save(reservation.get());
     }
 
-    // Delete
+    // DELETE
     @SuppressWarnings("null")
     public void deleteReservation(Long ID) {
         if (!reservationRepository.existsById(ID)) {

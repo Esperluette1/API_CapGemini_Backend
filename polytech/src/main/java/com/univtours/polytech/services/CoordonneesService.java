@@ -5,27 +5,27 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import jakarta.persistence.EntityNotFoundException;
 
 import com.univtours.polytech.entity.Coordonnees;
 import com.univtours.polytech.repository.CoordonneesRepository;
-
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CoordonneesService {
     @Autowired
     private CoordonneesRepository coordonneesRepository;
 
-    // Create
+    // CREATE
     public void createCoordonnees(Coordonnees coordonnees) {
         if (coordonnees != null){
             coordonneesRepository.save(coordonnees);
         }
     }
 
-    // Read Unitaire
+    // READ unitaire
     @SuppressWarnings("null")
     public Coordonnees readCoordonnees(Long id) {
         Optional<Coordonnees> coordonnees = coordonneesRepository.findById(id);
@@ -35,12 +35,10 @@ public class CoordonneesService {
         return coordonnees.get();
     }
 
-    // Read par Liste
-    public List<Coordonnees> readAllCoordonnees() {
-        return coordonneesRepository.findAll();
-    }
+    // READ liste
+    public List<Coordonnees> readAllCoordonnees() {return coordonneesRepository.findAll();}
 
-    // Update
+    // UPDATE
     @SuppressWarnings("null")
     public void updateCoordonnees(Long ID, float longitude, float latitude) {
         Optional<Coordonnees> coordonnees = coordonneesRepository.findById(ID);
@@ -52,13 +50,12 @@ public class CoordonneesService {
         coordonneesRepository.save(coordonnees.get());
     }
 
-    // Delete
+    // DELETE
     @SuppressWarnings("null")
     public void deleteCoordonnees(Long ID) {
         if (!coordonneesRepository.existsById(ID)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Coordonnées introuvables");
         }
-        // Ne pas supprimer si des terrains référencent ces coordonnées (respecter script BDD)
         Coordonnees coordonnees = coordonneesRepository.findById(ID).get();
         boolean referenced = coordonnees.getTerrains() != null && !coordonnees.getTerrains().isEmpty();
         if (referenced) {

@@ -5,8 +5,7 @@ public class ReservationDTO {
     private Long terrainId;
     private Long reservation;
 
-    public ReservationDTO() {
-    }
+    public ReservationDTO() {}
 
     public ReservationDTO(Long utilisateur_id, Long terrain_id, Long reservation) {
         this.utilisateurId = utilisateur_id;
@@ -33,4 +32,4 @@ public class ReservationDTO {
     public Long getReservation() {return reservation;}
 
     public void setReservation(Long reservation) {this.reservation = reservation;}
-    }
+}

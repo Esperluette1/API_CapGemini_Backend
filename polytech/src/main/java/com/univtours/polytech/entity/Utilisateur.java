@@ -1,5 +1,7 @@
 package com.univtours.polytech.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.OneToMany;
-import java.util.List;
 
 @Entity 
 @Table(name = "utilisateur")
@@ -36,8 +37,7 @@ public class Utilisateur {
     @OneToMany(mappedBy = "utilisateur")
     private List<Reservation> reservations;
 
-    public Utilisateur() {
-    }
+    public Utilisateur() {}
 
     public Utilisateur(Long id, String nom, String prenom, String mail, String password, String username) {
         this.id = id;
@@ -48,59 +48,31 @@ public class Utilisateur {
         this.username = username;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() {return id;}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) {this.id = id;}
 
-    public String getNom() {
-        return nom;
-    }
+    public String getNom() {return nom;}
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    public void setNom(String nom) {this.nom = nom;}
 
-    public String getPrenom() {
-        return prenom;
-    }
+    public String getPrenom() {return prenom;}
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+    public void setPrenom(String prenom) {this.prenom = prenom;}
 
-    public String getMail() {
-        return mail;
-    }
+    public String getMail() {return mail;}
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
+    public void setMail(String mail) {this.mail = mail;}
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() {return password;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) {this.password = password;}
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() {return username;}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) {this.username = username;}
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
+    public List<Reservation> getReservations() {return reservations;}
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
+    public void setReservations(List<Reservation> reservations) {this.reservations = reservations;}
 }

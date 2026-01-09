@@ -1,14 +1,5 @@
 package com.univtours.polytech.Controller;
 
-import com.univtours.polytech.mapper.ReservationMapper;
-import com.univtours.polytech.services.ReservationService;
-import com.univtours.polytech.services.UtilisateurService;
-import com.univtours.polytech.services.TerrainService;
-import com.univtours.polytech.dto.ReservationDTO;
-import com.univtours.polytech.entity.Reservation;
-import com.univtours.polytech.entity.Utilisateur;
-import com.univtours.polytech.entity.Terrain;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.persistence.EntityNotFoundException;
+
+import com.univtours.polytech.mapper.ReservationMapper;
+import com.univtours.polytech.services.ReservationService;
+import com.univtours.polytech.services.UtilisateurService;
+import com.univtours.polytech.services.TerrainService;
+import com.univtours.polytech.dto.ReservationDTO;
+import com.univtours.polytech.entity.Reservation;
+import com.univtours.polytech.entity.Utilisateur;
+import com.univtours.polytech.entity.Terrain;
 
 @RestController
 @RequestMapping("/reservations")

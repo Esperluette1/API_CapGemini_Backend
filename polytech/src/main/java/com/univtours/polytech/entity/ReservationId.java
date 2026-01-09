@@ -1,7 +1,7 @@
 package com.univtours.polytech.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
+import java.io.Serializable;
 
 public class ReservationId implements Serializable {
 
@@ -10,29 +10,20 @@ public class ReservationId implements Serializable {
     private Long utilisateur_id;
     private Long terrain_id;
 
-    public ReservationId() {
-    }
+    public ReservationId() {}
 
     public ReservationId(Long utilisateur_id, Long terrain_id) {
         this.utilisateur_id = utilisateur_id;
         this.terrain_id = terrain_id;
     }
 
-    public Long getUtilisateur_id() {
-        return utilisateur_id;
-    }
+    public Long getUtilisateur_id() {return utilisateur_id;}
 
-    public void setUtilisateur_id(Long utilisateur_id) {
-        this.utilisateur_id = utilisateur_id;
-    }
+    public void setUtilisateur_id(Long utilisateur_id) {this.utilisateur_id = utilisateur_id;}
 
-    public Long getTerrain_id() {
-        return terrain_id;
-    }
+    public Long getTerrain_id() {return terrain_id;}
 
-    public void setTerrain_id(Long terrain_id) {
-        this.terrain_id = terrain_id;
-    }
+    public void setTerrain_id(Long terrain_id) {this.terrain_id = terrain_id;}
 
     @Override
     public boolean equals(Object o) {
@@ -44,7 +35,5 @@ public class ReservationId implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(utilisateur_id, terrain_id);
-    }
+    public int hashCode() {return Objects.hash(utilisateur_id, terrain_id);}
 }
